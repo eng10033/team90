@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+      
+      <canvas id="myCanvas" width="300" height="150" style="border:1px solid #d3d3d3;">
+          Your browser does not support the HTML5 canvas tag.
+      </canvas>
+      
+      <script type="text/javascript">
+
+        var map;
+        var markers = [];
+        //var position;
+
+        function initMap() {
+            var marker1 = {lat:-37.9128781, lng: 145.1362585};
+            var marker2 = {lat:-37.912641, lng: 145.1308405};
+            var marker3 = {lat:-37.9092552, lng: 145.1338553};
+            var totalLat = marker1.lat + marker2.lat + marker3.lat;
+            var totalLng = marker1.lng + marker2.lng + marker3.lng;
+            var centerLat = totalLat/3;
+            var centerLng = totalLng/3;
+
+
+            map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 17,
+              center: {lat: centerLat, lng: centerLng},
+              mapTypeId: google.maps.MapTypeId.TERRAIN
+            });
+
+            var marker1 = new google.maps.Marker({
+            position: marker1,
+            map: map,
+            title: 'Monash Sport'
+            });
+
+            var marker2 = new google.maps.Marker({
+            position: marker2,
+            map: map,
+            title: 'Faculty of Medicine'
+            });
+
+            var marker3 = new google.maps.Marker({
+            position: marker3,
+            map: map,
+            title: 'Faculty of Engineering'
+            });
+
+            //markers = [marker1, marker2];
+            //markers.setMap(map);
+
+            
+            var flightPlanCoordinates = [
+            {lat:-37.9128781, lng: 145.1362585},
+            {lat:-37.912641, lng: 145.1308405},
+            {lat:-37.9092552, lng: 145.1338553},
+            {lat:-37.9128781, lng: 145.1362585}
+            ];
+          
+            var flightPath = new google.maps.Polyline({
+            path: flightPlanCoordinates,
+            geodesic: true,
+            strokeColor: 'magenta',
+            strokeOpacity: 1.5,
+            strokeWeight: 2,
+            map: map
+          });
+        }
+
+        
+    </script>
+    <script async defer
+  src="https://maps.googleapis.com/maps/api/js?v=3&amp;key=&amp;callback=initMap">
+    </script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
